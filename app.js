@@ -42,19 +42,32 @@ app.use("/", indexRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
-  const err = new Error("Not Found");
-  err.status = 404;
-  next(err);
+  // const err = new Error("Not Found"); //Take "Not Found" off?
+  res.status(404).render("page-not-found");
 });
 
 // error handlers
-app.use(function (err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get("env") === "development" ? err : {};
-  // render the error page
-  res.status(err.status || 500);
-  res.render("error");
+// app.use(function (err, req, res, next) {
+//   // set locals, only providing error in development
+//   res.locals.message = err.message;
+//   res.locals.error = req.app.get("env") === "development" ? err : {};
+//   // render the error page
+//   res.status(err.status || 500);
+//   res.render("error");
+// });
+
+/* Global error handler */
+app.use((err, req, res, next) => {
+  if (err) {
+    console.log("Global error handler called", err);
+  }
+  if (err.status === 404) {
+    res.status(404).render("page-not-found", { err });
+  } else {
+    err.message =
+      err.message || "Oops! It looks like something went wrong on the server";
+    res.status(err.status || 500).render("error", { err });
+  }
 });
 
 module.exports = app;
