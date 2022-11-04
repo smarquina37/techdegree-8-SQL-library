@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { Book } = require("../models/book.js");
+const Book = require("../models").Book;
 
 // async Handler -  middleware to wrap each of our routes automatically in a try-catch block
 function asyncHandler(cb) {
@@ -24,7 +24,6 @@ router.get(
   "/books",
   asyncHandler(async (req, res) => {
     const books = await Book.findAll();
-    // res.render("/book", { title: "Books", books: books.books });
     res.json({ books });
     console.log(books);
   })
