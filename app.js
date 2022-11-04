@@ -9,19 +9,14 @@ const indexRouter = require("./routes/index");
 const app = express();
 
 // Import the instance of sequelize
-const Sequelize = require("sequelize");
-const db = require("./models");
-const sequelize = new Sequelize({
-  dialect: "sqlite",
-  storage: "library.db",
-});
+const Sequelize = require("./models/index.js").sequelize;
 
 // Use sequelize.sync() method to sync the model with the database
 (async () => {
-  await db.sequelize.sync({ force: true });
+  await Sequelize.sync();
   try {
     // Use the sequelize.authenticate() method to asynchronously connect to the database
-    await sequelize.authenticate();
+    await Sequelize.authenticate();
     console.log("Connection has been established successfully.");
   } catch (error) {
     console.error("Error connecting to the database:", error);
@@ -38,7 +33,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use("/", indexRouter);
+app.use("/", indexRoutes); //Changed from indexRouter
+app.use("/books", booksRoutes);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
