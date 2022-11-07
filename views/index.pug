@@ -4,6 +4,28 @@ block content
     h1 Books
     | &#x9;
     p
-      a.button(href='new_book.html') Create New Book
+      a.button(href="/books/new") Create New Book
     | &#x9;
+    table
+      thead
+        tr
+          th Title
+          | &#x9;&#x9;&#x9;&#x9;
+          th Author
+          | &#x9;&#x9;&#x9;&#x9;
+          th Genre
+          | &#x9;&#x9;&#x9;&#x9;
+          th Year
+      | &#x9;&#x9;
+      tbody
+        each book in books
+          tr
+            td
+                a(href='book_detail.html') #{book.title}
+            | &#x9;&#x9;&#x9;&#x9;
+            td #{book.author}
+            | &#x9;&#x9;&#x9;&#x9;
+            td #{book.genre}
+            | &#x9;&#x9;&#x9;&#x9;
+            td #{book.year}
     

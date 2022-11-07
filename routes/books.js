@@ -18,8 +18,22 @@ router.get(
   "/",
   asyncHandler(async (req, res) => {
     const books = await Book.findAll();
-    res.render("books/index", { books });
+    res.render("index", { books });
   })
 );
+
+/* Create a new book form. */
+router.get("/books/new", (req, res) => {
+  res.render("new-book");
+});
+
+/* POST create article. */
+// router.post(
+//   "/",
+//   asyncHandler(async (req, res) => {
+//     const book = await Book.create(req.body);
+//     res.redirect("/books");
+//   })
+// );
 
 module.exports = router;
