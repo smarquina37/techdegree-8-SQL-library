@@ -1,5 +1,6 @@
 "use strict";
 const Sequelize = require("sequelize");
+
 module.exports = (sequelize, DataTypes) => {
   class Book extends Sequelize.Model {}
   Book.init(

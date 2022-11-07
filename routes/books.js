@@ -29,20 +29,46 @@ router.get("/new", (req, res) => {
 
 /* POST create book. */
 router.post(
-  "/",
+  "/", // Is this correct url path?
   asyncHandler(async (req, res) => {
     const book = await Book.create(req.body);
     res.redirect("/books/" + book.id);
   })
 );
 
+/* Edit book form. */
+// router.get(
+//   "/:id/edit",
+//   asyncHandler(async (req, res) => {
+//     const book = await Book.findByPk(req.params.id);
+//     res.render("update-book", { book: {}, title: "Edit Book" });
+//   })
+// );
+
 /* GET individual book. */
 router.get(
   "/:id",
   asyncHandler(async (req, res) => {
     const book = await Book.findByPk(req.params.id);
-    res.render("/books/:id", { book });
+    res.render("update-book"); // Is this correct url path?
   })
 );
 
+/* Update a book. */
+// router.post(
+//   "/:id/edit",
+//   asyncHandler(async (req, res) => {
+//     const book = await Book.findByPk(req.params.id);
+//     await book.update(req.body);
+//     res.redirect("/books/" + book.id);
+//   })
+// );
+
+/* Delete book form. */
+// router.post(
+//   "/:id/delete",
+//   asyncHandler(async (req, res) => {
+//     res.redirect("/books");
+//   })
+// );
 module.exports = router;
