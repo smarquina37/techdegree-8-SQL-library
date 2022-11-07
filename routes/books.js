@@ -23,17 +23,26 @@ router.get(
 );
 
 /* Create a new book form. */
-router.get("/books/new", (req, res) => {
+router.get("/new", (req, res) => {
   res.render("new-book");
 });
 
-/* POST create article. */
+/* POST create book. */
 // router.post(
-//   "/",
+//   "/books/new",
 //   asyncHandler(async (req, res) => {
 //     const book = await Book.create(req.body);
-//     res.redirect("/books");
+//     res.redirect("/books/" + book.id);
 //   })
 // );
+
+/* GET individual book. */
+router.get(
+  "/:id",
+  asyncHandler(async (req, res) => {
+    const book = await Book.findByPk(req.params.id);
+    res.render("/books/:id", { book });
+  })
+);
 
 module.exports = router;
