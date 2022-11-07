@@ -28,13 +28,13 @@ router.get("/new", (req, res) => {
 });
 
 /* POST create book. */
-// router.post(
-//   "/books/new",
-//   asyncHandler(async (req, res) => {
-//     const book = await Book.create(req.body);
-//     res.redirect("/books/" + book.id);
-//   })
-// );
+router.post(
+  "/",
+  asyncHandler(async (req, res) => {
+    const book = await Book.create(req.body);
+    res.redirect("/books/" + book.id);
+  })
+);
 
 /* GET individual book. */
 router.get(
