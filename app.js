@@ -25,7 +25,7 @@ app.use("/", indexRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
-  res.status(404).render("page-not-found", { err });
+  res.status(404).render("page-not-found");
 });
 
 /* Global error handler */
