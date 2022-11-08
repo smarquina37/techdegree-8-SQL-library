@@ -2,8 +2,6 @@ const express = require("express");
 const book = require("../models/book");
 const router = express.Router();
 const Book = require("../models").Book;
-// const db = require("/..models/index");
-// const { Op } = db.Sequelize;
 
 /* GET home page. */
 // redirect '/' to '/books'
