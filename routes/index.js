@@ -65,7 +65,9 @@ router.get(
     if (book) {
       res.render("update-book", { book });
     } else {
-      res.sendStatus(404);
+      const err = new Error();
+      err.status = 404;
+      throw err;
     }
   })
 );
