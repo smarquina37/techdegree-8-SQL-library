@@ -3,12 +3,6 @@ const book = require("../models/book");
 const router = express.Router();
 const Book = require("../models").Book;
 
-/* GET home page. */
-// redirect '/' to '/books'
-router.get("/", (req, res, next) => {
-  res.redirect("/books");
-});
-
 // async Handler -  middleware to wrap each of our routes automatically in a try-catch block
 function asyncHandler(cb) {
   return async (req, res, next) => {
@@ -20,6 +14,12 @@ function asyncHandler(cb) {
     }
   };
 }
+
+/* GET home page. */
+// redirect '/' to '/books'
+router.get("/", (req, res, next) => {
+  res.redirect("/books");
+});
 
 router.get(
   "/books",
