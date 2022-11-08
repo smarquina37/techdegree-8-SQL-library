@@ -1,12 +1,11 @@
 extends layout
 
 block content
-  div.container
-    h1= `Server Error`
-    h2= `Error status code: ${err.status} - Server Error`
-    p.error-p= `Human friendly error message: ${err.message}`
+  h1= `Server Error`
+  h2= `Error status code: ${err.status} - Server Error`
+  p.error-p= `${err.message}`
 
-    a.home(href=`/`) Home
+  a.home(href=`/`) Home
 
-    div.not-found-stack
-      pre #{err.stack}
+  div.not-found-stack
+    pre #{err.stack}
