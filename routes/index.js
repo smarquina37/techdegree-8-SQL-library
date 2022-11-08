@@ -9,7 +9,6 @@ function asyncHandler(cb) {
     try {
       await cb(req, res, next);
     } catch (error) {
-      // res.render("error", { error: err });
       next(error);
     }
   };
@@ -18,6 +17,7 @@ function asyncHandler(cb) {
 /* GET home page. */
 // redirect '/' to '/books'
 router.get("/", (req, res, next) => {
+  // Redirect the "/" URL path to "/books"
   res.redirect("/books");
 });
 
@@ -31,6 +31,7 @@ router.get(
 
 /* Create a new book form. */
 router.get("/books/new", (req, res) => {
+  // "new-book" view will render in the browser
   res.render("new-book", { book: req.body });
 });
 
@@ -63,6 +64,7 @@ router.get(
   asyncHandler(async (req, res, next) => {
     const book = await Book.findByPk(req.params.id);
     if (book) {
+      // "update-book" view will render in the browser
       res.render("update-book", { book });
     } else {
       const error = new Error("Book not found in database");
